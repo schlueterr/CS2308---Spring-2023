@@ -1,3 +1,12 @@
+// File Name: main.cpp
+// 
+// Author: Braden Schlueter (plr61)
+// Date: 02/05/2023
+// Assignment Number: Unit1_Array_Structure Coding Practice
+// CS 2308.258 Spring 2023
+// 
+// A set of functions, structs, and arrays to practice, given the instructions from Unit1_Array_Structure Coding Practice
+
 #include <iostream>
 
 using namespace std;
