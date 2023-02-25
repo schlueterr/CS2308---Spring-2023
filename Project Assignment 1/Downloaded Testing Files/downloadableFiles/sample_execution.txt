@@ -1,0 +1,86 @@
+
+Menu
+
+1. Display Results sorted by bib number
+2. Display Results sorted by distance, then time
+3. Lookup a bib number given a name
+4. Lookup a result by bib number
+5. Quit the Program
+
+Enter your choice: 1
+
+BibNum Name              Distance    Time  
+10     John Smith           122.0  05:40:52
+12     Julio Garza           97.6  05:35:00
+15     Tom Stanford          91.5  05:36:07
+20     Gary Benson          115.9  05:50:40
+25     David Myers          103.7  05:53:16
+30     Mason Prince          97.6  05:52:21
+
+Menu
+
+1. Display Results sorted by bib number
+2. Display Results sorted by distance, then time
+3. Lookup a bib number given a name
+4. Lookup a result by bib number
+5. Quit the Program
+
+Enter your choice: 2
+
+BibNum Name              Distance    Time  
+10     John Smith           122.0  05:40:52
+20     Gary Benson          115.9  05:50:40
+25     David Myers          103.7  05:53:16
+12     Julio Garza           97.6  05:35:00
+30     Mason Prince          97.6  05:52:21
+15     Tom Stanford          91.5  05:36:07
+
+Menu
+
+1. Display Results sorted by bib number
+2. Display Results sorted by distance, then time
+3. Lookup a bib number given a name
+4. Lookup a result by bib number
+5. Quit the Program
+
+Enter your choice: 3
+Enter name of a racer to look for: Julio Garza
+
+The number of the racer with name Julio Garza is: 12
+
+Menu
+
+1. Display Results sorted by bib number
+2. Display Results sorted by distance, then time
+3. Lookup a bib number given a name
+4. Lookup a result by bib number
+5. Quit the Program
+
+Enter your choice: 4
+Enter number of a racer to look for: 12
+
+12     Julio Garza           97.6  05:35:00
+
+Menu
+
+1. Display Results sorted by bib number
+2. Display Results sorted by distance, then time
+3. Lookup a bib number given a name
+4. Lookup a result by bib number
+5. Quit the Program
+
+Enter your choice: 4
+Enter number of a racer to look for: 13
+
+No racer found with number: 13
+
+Menu
+
+1. Display Results sorted by bib number
+2. Display Results sorted by distance, then time
+3. Lookup a bib number given a name
+4. Lookup a result by bib number
+5. Quit the Program
+
+Enter your choice: 5
+Exiting the program...
