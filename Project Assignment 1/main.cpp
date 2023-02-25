@@ -40,5 +40,6 @@ int main(){
     
     displayMenu();
     cin >> choice;
+    // Validate the user's choice: DELTE THIS LATER
     cout << choice << endl;
 }
