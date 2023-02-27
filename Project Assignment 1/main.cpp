@@ -50,9 +50,9 @@ int main(){
     int choice;
 
     Result results[] = {  // This is testing data DELETE LATER
-                       {12, "TestingName", 12.5, "12:00:00"},
-                       {20, "Testing 2nd Name", 36, "9:30:00"},
-                       {1, "Testing 3rd Name", 1.5, "1:15:00"}
+                       {10, "John Smith", 122.0, "05:40:52"},
+                       {20, "Gary Benson", 115.9, "05:50:40"},
+                       {25, "David Myers", 103.7, "05:53:16"}
     };
     int count = 3;
     
