@@ -36,9 +36,22 @@ void displayHeader(){
          << endl;
 }
 
+void displayDataset(Result results[], int size){
+    displayHeader();
+    for (int i = 0; i < size; i++){
+        cout << left
+             << setw(7) << results[i].bibNumber
+             << setw(18) << results[i].name
+             << right
+             << setw(8) << results[i].distance
+             << setw(10) << results[i].time
+             << endl;
+    }
+}
+
 // Functions needed per the assignment instructions
 void readDataset(ifstream& in, Result results[], int &size); 
-void displayDataset(Result results[], int size); 
+// void displayDataset(Result results[], int size); 
 int linearSearchByName(Result results[], int size, string targetName); 
 int binarySearchByNumber(Result results[], int size, int targetNumber); 
 void sortByNumber(Result results[], int size); 
