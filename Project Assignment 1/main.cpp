@@ -49,12 +49,31 @@ void displayDataset(Result results[], int size){
     }
 }
 
+void sortByNumber(Result results[], int size){
+    bool swap;
+    Result temp;
+    do {
+        swap = false;
+        for (int count = 0; count < (size - 1); count++)
+        {
+            if (results[count].bibNumber > results[count + 1].bibNumber)
+            {
+                temp = results[count];
+                results[count] = results[count + 1];
+                results[count + 1] = temp;
+                swap = true;
+            }
+        }
+    } while (swap);
+    displayDataset(results, size);
+}
+
 // Functions needed per the assignment instructions
 void readDataset(ifstream& in, Result results[], int &size); 
 // void displayDataset(Result results[], int size); 
 int linearSearchByName(Result results[], int size, string targetName); 
 int binarySearchByNumber(Result results[], int size, int targetNumber); 
-void sortByNumber(Result results[], int size); 
+// void sortByNumber(Result results[], int size); 
 void sortByDistanceTime(Result results[], int size); 
 
 
@@ -78,9 +97,11 @@ int main(){
     switch (choice){
         case 1:
             // display results sorted by bib number
+            sortByNumber(results, count);
             break;
         case 2:
             // display results sorted by distance, then time
+            displayDataset(results, count);
             break;
         case 3:
             // lookup a bib number given a name
