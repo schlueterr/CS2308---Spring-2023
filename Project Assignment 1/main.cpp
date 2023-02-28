@@ -68,10 +68,19 @@ void sortByNumber(Result results[], int size){
     displayDataset(results, size);
 }
 
+int linearSearchByName(Result results[], int size, string racerName){
+    for (int i = 0; i < size; i++){
+        if (results[i].name == racerName){
+            return results[i].bibNumber;
+        }
+    }
+    return -1;
+}
+
 // Functions needed per the assignment instructions
 void readDataset(ifstream& in, Result results[], int &size); 
 // void displayDataset(Result results[], int size); 
-int linearSearchByName(Result results[], int size, string targetName); 
+// int linearSearchByName(Result results[], int size, string targetName); 
 int binarySearchByNumber(Result results[], int size, int targetNumber); 
 // void sortByNumber(Result results[], int size); 
 void sortByDistanceTime(Result results[], int size); 
@@ -80,6 +89,7 @@ void sortByDistanceTime(Result results[], int size);
 
 int main(){
     int choice;
+    string racerName;
 
     Result results[] = {  // This is testing data DELETE LATER
                        {10, "John Smith", 122.0, "05:40:52"},
@@ -105,6 +115,11 @@ int main(){
             break;
         case 3:
             // lookup a bib number given a name
+            // Need to add input for targetName, and use cin to get the 
+            cout << "Enter a name of the racer: ";
+                cin >> ws;
+                getline(cin, racerName);
+            cout << "The bib number for " << racerName << " is " << linearSearchByName(results, count, racerName) << "." << endl;
             break;
         case 4:
             // lookup a result by bib number
