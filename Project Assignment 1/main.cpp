@@ -77,18 +77,38 @@ int linearSearchByName(Result results[], int size, string racerName){
     return -1;
 }
 
+int binarySearchByNumber(Result results[], int size, int targetNumber){
+    int mid;
+    int low = 0;
+    int high = size - 1;
+
+    while (high >= low) {
+        mid = (high + low) / 2;
+        if (results[mid].bibNumber < targetNumber) {
+            low = mid + 1;
+        }
+        else if (results[mid].bibNumber > targetNumber) {
+            high = mid - 1;
+        }
+        else {
+            return mid;
+        }
+    }
+    return -1; // not found
+}
+
 // Functions needed per the assignment instructions
 void readDataset(ifstream& in, Result results[], int &size); 
 // void displayDataset(Result results[], int size); 
 // int linearSearchByName(Result results[], int size, string targetName); 
-int binarySearchByNumber(Result results[], int size, int targetNumber); 
+// int binarySearchByNumber(Result results[], int size, int targetNumber); 
 // void sortByNumber(Result results[], int size); 
 void sortByDistanceTime(Result results[], int size); 
 
 
 
 int main(){
-    int choice;
+    int choice, userBibNumber;
     string racerName;
 
     Result results[] = {  // This is testing data DELETE LATER
@@ -116,13 +136,27 @@ int main(){
         case 3:
             // lookup a bib number given a name
             // Need to add input for targetName, and use cin to get the 
-            cout << "Enter a name of the racer: ";
+            cout << "Enter a name of the racer to look for: ";
                 cin >> ws;
                 getline(cin, racerName);
-            cout << "The bib number for " << racerName << " is " << linearSearchByName(results, count, racerName) << "." << endl;
+            cout << "\nThe number of the racer with name " << racerName << " is: " << linearSearchByName(results, count, racerName) << "." << endl;
             break;
         case 4:
             // lookup a result by bib number
+            cout << "Enter number of a racer to look for: ";
+                cin >> userBibNumber;
+            if (binarySearchByNumber(results, count, userBibNumber) == -1){
+                cout << "\nNo racer found with number: " << userBibNumber << endl;
+                break;
+            }
+            cout << "\n"
+                 << left
+                 << setw(5) << results[binarySearchByNumber(results, count, userBibNumber)].bibNumber
+                 << setw(18) << results[binarySearchByNumber(results, count, userBibNumber)].name
+                 << right
+                 << setw(8) << results[binarySearchByNumber(results, count, userBibNumber)].distance
+                 << setw(10) << results[binarySearchByNumber(results, count, userBibNumber)].time
+                 << endl;
             break;
         case 5:
             // quit the program
