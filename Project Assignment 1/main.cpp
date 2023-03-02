@@ -2,9 +2,11 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
+int count = 10;
 
 // Include struct definitions
 struct Result{
@@ -13,6 +15,24 @@ struct Result{
     double distance;
     string time;
 };
+
+int readDataset(ifstream& in, Result results[], int &size){
+    // fin.open("dataset.txt");
+    int count = 0;
+    while(in){
+        in >> results[count].bibNumber;
+
+        in >> ws;
+        getline(in, results[count].name);
+
+        in >> results[count].distance;
+
+        in >> results[count].time;
+
+        count++;
+    }
+    return size = count - 1;
+}
 
 // Create the display menu
 void displayMenu(){
@@ -74,7 +94,7 @@ int linearSearchByName(Result results[], int size, string racerName){
             return results[i].bibNumber;
         }
     }
-    return -1;
+    return -1; // not found
 }
 
 int binarySearchByNumber(Result results[], int size, int targetNumber){
@@ -97,32 +117,65 @@ int binarySearchByNumber(Result results[], int size, int targetNumber){
     return -1; // not found
 }
 
+void sortByDistanceTime(Result results[], int size){
+    bool swap;
+    int temp;
+    do{
+        swap = false;
+        for (int i = 0; i < (size-1); i++){
+            if (results[i].distance < results[i+1].distance){
+                temp = results[i].distance;
+                results[i].distance = results[i+1].distance;
+                results[i+1].distance = temp;
+                swap = true;
+            }
+        }
+    }
+    while (swap);
+    displayDataset(results, size);
+}
+
+
 // Functions needed per the assignment instructions
-void readDataset(ifstream& in, Result results[], int &size); 
+// void readDataset(ifstream& in, Result results[], int &size); 
 // void displayDataset(Result results[], int size); 
 // int linearSearchByName(Result results[], int size, string targetName); 
 // int binarySearchByNumber(Result results[], int size, int targetNumber); 
 // void sortByNumber(Result results[], int size); 
-void sortByDistanceTime(Result results[], int size); 
+// void sortByDistanceTime(Result results[], int size); 
 
 
 
 int main(){
-    int choice, userBibNumber;
+    int choice, userBibNumber, count;
     string racerName;
+    ifstream fin;
+    Result info[10];
+    cout << fixed << setprecision(1);
 
-    Result results[] = {  // This is testing data DELETE LATER
-                       {10, "John Smith", 122.0, "05:40:52"},
+    fin.open("dataset.txt");
+    readDataset(fin, info, count);
+    fin.close();
+    Result results[count];
+    for (int i = 0; i < count; i++){
+        results[i] = info[i];
+    }
+
+
+   /* Result results[] = {  // This is testing data DELETE LATER
+                       {30, "John Smith", 122.0, "05:40:52"},
                        {20, "Gary Benson", 115.9, "05:50:40"},
                        {25, "David Myers", 103.7, "05:53:16"}
     };
     int count = 3;
-    
+   */
+
     displayMenu();
         cin >> choice;
     while (choice < 1 || choice > 5){ // Validate the user's choice
         cout << "Invalid choice. Please enter a number between 1 and 5: ";
             cin >> choice;
+            continue;
     }
     switch (choice){
         case 1:
@@ -131,7 +184,7 @@ int main(){
             break;
         case 2:
             // display results sorted by distance, then time
-            displayDataset(results, count);
+            sortByDistanceTime(results, count);
             break;
         case 3:
             // lookup a bib number given a name
@@ -139,7 +192,11 @@ int main(){
             cout << "Enter a name of the racer to look for: ";
                 cin >> ws;
                 getline(cin, racerName);
-            cout << "\nThe number of the racer with name " << racerName << " is: " << linearSearchByName(results, count, racerName) << "." << endl;
+            if (linearSearchByName(results, count, racerName) == -1){
+                cout << "\nNo racer found with name: " << racerName << endl;
+                break;
+            }
+            cout << "\nThe number of the racer with name " << racerName << " is: " << linearSearchByName(results, count, racerName) << endl;
             break;
         case 4:
             // lookup a result by bib number
@@ -160,7 +217,7 @@ int main(){
             break;
         case 5:
             // quit the program
-            cout << "Exiting program...";
+            cout << "Exiting the program...";
             return 0;
             break;
 
