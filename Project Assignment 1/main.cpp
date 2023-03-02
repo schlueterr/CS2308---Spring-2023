@@ -1,4 +1,13 @@
-// This is the main file for assignment 1 (project 1).
+// File Name: card.cpp
+// 
+// Author: Braden Schlueter plr61@txstate.edu
+// Date: 03/01/2023
+// Assignment Number: 1
+// CS 2308.258 Spring 2023
+// 
+// This program imitates a simple database containing a bicycle race. It reads input from dataset.txt and displays the results in a table. 
+// The user can then choose to sort the results by bib number, distance, or time. The user can also search for a racer by name or bib number.
+
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -16,6 +25,15 @@ struct Result{
     string time;
 };
 
+
+//***********************************************************
+// readDataset: reads data from dataset.txt and stores it in an array of structs
+//
+// in: input file stream
+// results[]: array of structs
+// size: size of array
+// returns: size of array
+//***********************************************************
 int readDataset(ifstream& in, Result results[], int &size){
     // fin.open("dataset.txt");
     int count = 0;
@@ -34,7 +52,11 @@ int readDataset(ifstream& in, Result results[], int &size){
     return size = count - 1;
 }
 
-// Create the display menu
+//***********************************************************
+// displayMenu: displays the menu for the user to choose from
+//
+// returns: void
+//***********************************************************
 void displayMenu(){
     cout << "\nMenu\n\n";
     cout << "1. Display results sorted by bib number\n";
@@ -45,7 +67,11 @@ void displayMenu(){
     cout << "Enter your choice: ";
 }
 
-// Displays a header for the results table
+//***********************************************************
+// displayHeader: displays the header for the results table
+//
+// returns: void
+//***********************************************************
 void displayHeader(){
     cout << left 
          << setw(7) << "BibNum"
@@ -56,6 +82,13 @@ void displayHeader(){
          << endl;
 }
 
+//***********************************************************
+// displayDataset: displays the results table
+//
+// results[]: array of structs
+// size: size of array
+// returns: void
+//***********************************************************
 void displayDataset(Result results[], int size){
     displayHeader();
     for (int i = 0; i < size; i++){
@@ -69,6 +102,13 @@ void displayDataset(Result results[], int size){
     }
 }
 
+//***********************************************************
+// function name: short description of what the function does.
+//
+// results[]: array of structs
+// size: size of array
+// returns: void
+//***********************************************************
 void sortByNumber(Result results[], int size){
     bool swap;
     Result temp;
@@ -88,6 +128,14 @@ void sortByNumber(Result results[], int size){
     displayDataset(results, size);
 }
 
+//***********************************************************
+// linearSearchByName: searches for a racer's bibNumber by name using linear search
+//
+// results[]: array of structs
+// size: size of array
+// racerName: name of racer to search for
+// returns: The racer's bibNumber if found, -1 if not found
+//***********************************************************
 int linearSearchByName(Result results[], int size, string racerName){
     for (int i = 0; i < size; i++){
         if (results[i].name == racerName){
@@ -97,6 +145,14 @@ int linearSearchByName(Result results[], int size, string racerName){
     return -1; // not found
 }
 
+//***********************************************************
+// binarySearchByNumber: searches for a racer's name by bibNumber using binary search
+//
+// results[]: array of structs
+// size: size of array
+// targetNumber: bibNumber of racer to search for
+// returns: the racers bibNumber index if found, -1 if not found
+//***********************************************************
 int binarySearchByNumber(Result results[], int size, int targetNumber){
     int mid;
     int low = 0;
@@ -117,6 +173,37 @@ int binarySearchByNumber(Result results[], int size, int targetNumber){
     return -1; // not found
 }
 
+//***********************************************************
+// bubbleSortByNumber: sorts the results array by bibNumber using bubble sort
+//
+// results[]: array of structs
+// size: size of array
+// returns: void
+//***********************************************************
+void bubbleSortByNumber(Result results[], int size){
+    bool swap;
+    Result temp;
+    do{
+        swap = false;
+        for (int i = 0; i < (size-1); i++){
+            if (results[i].bibNumber > results[i+1].bibNumber){
+                temp = results[i];
+                results[i] = results[i+1];
+                results[i+1] = temp;
+                swap = true;
+            }
+        }
+    }
+    while (swap);
+}
+
+//***********************************************************
+// sortByDistanceTime: sorts the results array by distance, then time using bubble sort
+//
+// results[]: array of structs
+// size: size of array
+// returns: void
+//***********************************************************
 void sortByDistanceTime(Result results[], int size){
     bool swap;
     int temp;
@@ -136,21 +223,11 @@ void sortByDistanceTime(Result results[], int size){
 }
 
 
-// Functions needed per the assignment instructions
-// void readDataset(ifstream& in, Result results[], int &size); 
-// void displayDataset(Result results[], int size); 
-// int linearSearchByName(Result results[], int size, string targetName); 
-// int binarySearchByNumber(Result results[], int size, int targetNumber); 
-// void sortByNumber(Result results[], int size); 
-// void sortByDistanceTime(Result results[], int size); 
-
-
-
 int main(){
     int choice, userBibNumber, count;
     string racerName;
     ifstream fin;
-    Result info[10];
+    Result info[30];
     cout << fixed << setprecision(1);
 
     fin.open("dataset.txt");
@@ -160,15 +237,6 @@ int main(){
     for (int i = 0; i < count; i++){
         results[i] = info[i];
     }
-
-
-   /* Result results[] = {  // This is testing data DELETE LATER
-                       {30, "John Smith", 122.0, "05:40:52"},
-                       {20, "Gary Benson", 115.9, "05:50:40"},
-                       {25, "David Myers", 103.7, "05:53:16"}
-    };
-    int count = 3;
-   */
 
     displayMenu();
         cin >> choice;
@@ -188,7 +256,6 @@ int main(){
             break;
         case 3:
             // lookup a bib number given a name
-            // Need to add input for targetName, and use cin to get the 
             cout << "Enter a name of the racer to look for: ";
                 cin >> ws;
                 getline(cin, racerName);
@@ -200,6 +267,7 @@ int main(){
             break;
         case 4:
             // lookup a result by bib number
+            bubbleSortByNumber(results, count);
             cout << "Enter number of a racer to look for: ";
                 cin >> userBibNumber;
             if (binarySearchByNumber(results, count, userBibNumber) == -1){
@@ -223,5 +291,4 @@ int main(){
 
     }
     
-
 }
