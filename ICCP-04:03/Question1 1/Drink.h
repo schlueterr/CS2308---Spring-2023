@@ -14,8 +14,8 @@ class Drink{
         void setPrice(double p);
         void setQuantity(int q);
         double getPrice();
-        string getQuantity();
+        int getQuantity();
         double totalCost();
-}
+};
 
 #endif

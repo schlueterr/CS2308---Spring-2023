@@ -20,7 +20,7 @@ double Drink::getPrice(){
     return price;
 }
 
-string Drink::getQuantity(){
+int Drink::getQuantity(){
     return quantity;
 }
 
