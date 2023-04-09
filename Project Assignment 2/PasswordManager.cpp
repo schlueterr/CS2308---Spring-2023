@@ -51,7 +51,7 @@ void PasswordManager::setUsername(string user){
     userName = user;
 }
 
-string PasswordManager::getUsername(){
+string PasswordManager::getUsername() const{
     return userName;
 }
 
@@ -59,7 +59,7 @@ void PasswordManager::setEncryptedPassword(string pass){
     encryptedPassword = pass;
 }
 
-string PasswordManager::getEncryptedPassword(){
+string PasswordManager::getEncryptedPassword() const{
     return encryptedPassword;
 }
 

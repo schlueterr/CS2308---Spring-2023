@@ -9,9 +9,9 @@ class PasswordManager {
         bool meetsCriteria(string pass);
     public:
         void setUsername(string user);
-        string getUsername();
+        string getUsername() const;
         void setEncryptedPassword(string pass);
-        string getEncryptedPassword();
+        string getEncryptedPassword() const;
         bool setNewPassword(string pass);
         bool authenticate(string pass);
 };
