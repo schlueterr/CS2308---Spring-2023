@@ -90,6 +90,7 @@ int main(){
 
 int size = 3;
 int index = -1; // index of perticular member function in class
+
 for(int i=0; i<size; i++){
     cout << "Testing" << endl;
     cout << passwordSample[0].getUsername() << endl;
@@ -101,13 +102,16 @@ for(int i=0; i<size; i++){
         break;
     }
 }
+cout << "password sample index 0: " << passwordSample[0].getUsername() << endl;
+cout << "password sample index 1: " << passwordSample[1].getUsername() << endl;
+cout << "password sample index 2: " << passwordSample[2].getUsername() << endl;
 
 if(index == -1)
     cout<< "NetID is invalid, password not changed."<< endl;
 
 // authenticating if old password is correct
-else if(!passwordSample[index].authenticate(user_oldPass))
-    cout<< "Old password is incorrect."<< endl;
+//else if(!passwordSample[index].authenticate(user_oldPass))
+//    cout<< "Old password is incorrect."<< endl;
 
 // checking if new password meets criteria and changing password if true
 else if(user1.setNewPassword(user_newPass)== true)
