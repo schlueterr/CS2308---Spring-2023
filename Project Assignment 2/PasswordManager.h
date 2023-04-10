@@ -5,13 +5,13 @@ class PasswordManager {
     private: 
         string userName;
         string encryptedPassword;
-        string encrypt(string pass);
-        bool meetsCriteria(string pass);
+        string encrypt(string);
+        bool meetsCriteria(string);
     public:
-        void setUsername(string user);
+        void setUsername(string);
         string getUsername() const;
-        void setEncryptedPassword(string pass);
+        void setEncryptedPassword(string);
         string getEncryptedPassword() const;
-        bool setNewPassword(string pass);
-        bool authenticate(string pass);
+        bool setNewPassword(string);
+        bool authenticate(string);
 };

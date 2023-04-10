@@ -7,9 +7,12 @@ using namespace std;
 int main(){
     PasswordManager passwordSample[3];
     string user, pass;
+    string fileName;
 
     // Working as intended
     ifstream fin;
+    // cout << "Please enter the name of the input file: " << endl;
+    // cin >> fileName;
     fin.open("passwords.txt");
     if (!fin){ //Error check
         cout << "ERROR: File failed to open." << endl;
@@ -24,7 +27,7 @@ int main(){
 
             // Debug/Testing code
             // cout << passwordSample[i].getUsername() << endl;
-            // cout << passwordSample[i].getEncryptedPassword() << endl;
+            //  cout << passwordSample[i].getEncryptedPassword() << endl;
         }
     }
     fin.close();
