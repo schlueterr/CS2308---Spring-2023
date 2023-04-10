@@ -18,8 +18,8 @@ string PasswordManager::encrypt(string pass){
 }
 
 bool PasswordManager::meetsCriteria(string pass){
-    bool upper_count = 0, lower_count = 0, digit_count = 0, special_count = 0;
-    if (pass.length() < 15){
+    bool upper_count = 0, lower_count = 0, digit_count = 0;
+    if (pass.length() < 8){
         return false;
     }
     else{
@@ -33,11 +33,8 @@ bool PasswordManager::meetsCriteria(string pass){
             else if (isdigit(pass[i])){
                 digit_count = 1;
             }
-            else if (ispunct(pass[i])){
-                special_count = 1;
-            }
         }
-        if (upper_count && lower_count && digit_count && special_count){
+        if (upper_count && lower_count && digit_count){
             return true;
         }
         else{

@@ -51,35 +51,37 @@ int main(){
 
     // Debug/Testing code
     // cout << "Your netID is: " << user_netID << " Your old password is: "
-    //     << user_oldPass << " Your new password is: " << user_newPass << endl;
+       //  << user_oldPass << " Your new password is: " << user_newPass << endl;
 
-    int user_index = 0;
-    for (int i = 0; user_netID != passwordSample[i].getUsername() && i < 3; i++){
-        user_index++;
-        // cout << "User index is: " << user_index << endl;
-    }
 
-    if (user_index == 3){
-        cout << "NetID is invalid, password not changed." << endl;
+    // Debug/Testing code 
+/*
+    cout << user_netID << "is the netID" << endl;
+    for (int i = 0; i < 3; i++){
+        cout << "Testing to see if getUserName works: " << passwordSample[i].getUsername() << endl;
     }
-    else
-    {
-        for (int i = 0; i < 3; i++){
-            if (user_netID == passwordSample[i].getUsername()){
-                if (!passwordSample[i].authenticate(user_oldPass)){
-                    cout << "Old password is incorrect." << endl;
+*/
+  
+    for (int i = 0; i < 3; i++){
+        if (user_netID == passwordSample[i].getUsername()){
+            cout << "Your netID is valid." << endl;
+            if (user_oldPass == passwordSample[i].getEncryptedPassword()){
+                cout << "Your old password is valid." << endl;
+                if (user1.setNewPassword(user_newPass)){
+                    cout << "Your new password is valid." << endl;
+                    passwordSample[i].setEncryptedPassword(user_newPass);
+                    cout << "Your password has been changed." << endl;
                 }
                 else{
-                    if (!user1.setNewPassword(user_newPass)){
-                        cout << "New password does not meet criteria." << endl;
-                    }
-                    else{
-                        passwordSample[i].setNewPassword(user_newPass);
-                        cout << "Password has been changed for netID: " << user_netID << endl;
-                    }
+                    cout << "Your new password is invalid." << endl;
                 }
-                break;
             }
+            else{
+                cout << "Your old password is invalid." << endl;
+            }
+        }
+        else{
+            cout << "Your netID is invalid." << endl;
         }
     }
 
