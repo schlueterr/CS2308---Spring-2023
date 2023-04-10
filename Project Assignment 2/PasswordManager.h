@@ -19,9 +19,9 @@ class PasswordManager {
     public:
         PasswordManager();
         void setUsername(string);
-        string getUsername() const;
+        string getUsername();
         void setEncryptedPassword(string);
-        string getEncryptedPassword() const;
+        string getEncryptedPassword();
         bool setNewPassword(string);
         bool authenticate(string);
 };

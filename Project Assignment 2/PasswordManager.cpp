@@ -90,7 +90,7 @@ void PasswordManager::setUsername(string user){
 //
 // returns: the username (string)
 //***********************************************************
-string PasswordManager::getUsername() const{
+string PasswordManager::getUsername(){
     return userName;
 }
 
@@ -108,7 +108,7 @@ void PasswordManager::setEncryptedPassword(string pass){
 //
 // returns: the encrypted password (string)
 //***********************************************************
-string PasswordManager::getEncryptedPassword() const{
+string PasswordManager::getEncryptedPassword(){
     return encryptedPassword;
 }
 

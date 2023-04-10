@@ -55,13 +55,15 @@ int main(){
 
 
     // Debug/Testing code 
-/*
+
     cout << user_netID << "is the netID" << endl;
     for (int i = 0; i < 3; i++){
         cout << "Testing to see if getUserName works: " << passwordSample[i].getUsername() << endl;
     }
-*/
-  
+
+
+// This one works sorta
+ /* 
     for (int i = 0; i < 3; i++){
         if (user_netID == passwordSample[i].getUsername()){
             cout << "Your netID is valid." << endl;
@@ -84,7 +86,40 @@ int main(){
             cout << "Your netID is invalid." << endl;
         }
     }
+*/
 
+int size = 3;
+int index = -1; // index of perticular member function in class
+for(int i=0; i<size; i++){
+    cout << "Testing" << endl;
+    cout << passwordSample[0].getUsername() << endl;
+    cout << passwordSample[1].getUsername() << endl;
+    cout << passwordSample[2].getUsername() << endl;
+    cout << user_netID << endl;
+    if(passwordSample[i].getUsername() == user_netID){
+        index=i;
+        break;
+    }
+}
+
+if(index == -1)
+    cout<< "NetID is invalid, password not changed."<< endl;
+
+// authenticating if old password is correct
+else if(!passwordSample[index].authenticate(user_oldPass))
+    cout<< "Old password is incorrect."<< endl;
+
+// checking if new password meets criteria and changing password if true
+else if(user1.setNewPassword(user_newPass)== true)
+{
+    cout << "Password has been changed for netID: ";
+    cout << passwordSample[index].getUsername()<< endl;
+}
+else
+    cout << "New Password does not meet criteria.";
+
+   
+   
     ofstream fout;
     fout.open("passwords.txt");
     for (int i = 0; i < 3; i++){
