@@ -85,14 +85,17 @@ int main(){
     for (int i = 0; i < 3; i++){
         index = i;
         if(passwordSample[i].getUsername() == user_netID){ // This is working as intended
-            cout << passwordSample[i].getEncryptedPassword() << endl;
+            cout << "\n" << passwordSample[i].getEncryptedPassword() << endl;
+            cout << user_oldPass << endl;
             // cout << "Testing to see where this is going wrong" << endl;
             // passwordSample[i].setEncryptedPassword(user_oldPass);
             // cout << passwordSample[i].getEncryptedPassword() << endl;
-
+            if(user1.setNewPassword(user_newPass) == false){
+                cout << "\nNew password does not meet criteria." << endl;
+            }
             if (user_oldPass == passwordSample[index].getEncryptedPassword()){
-                passwordSample[i].setEncryptedPassword(user_oldPass);
                 passwordSample[i].setEncryptedPassword(user_newPass);
+                passwordSample[i].setEncryptedPassword(user_oldPass);
                 cout << "\nPassword has been changed for netID: " << passwordSample[i].getUsername() << endl;
             }
             else{
@@ -104,7 +107,9 @@ int main(){
 // Password has been changed for netId: user_netID
 // New password does not meet criteria
 
-   
+   for (int i = 0; i < 3; i++){
+        cout << passwordSample[i].getUsername() << " " << passwordSample[i].getEncryptedPassword() << endl;
+    }
    
     ofstream fout;
     fout.open("passwords.txt");
