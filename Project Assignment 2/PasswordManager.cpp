@@ -146,4 +146,31 @@ bool PasswordManager::authenticate(string pass){
     return (encrypt(pass) == encryptedPassword);
 }
 
+bool PasswordManager::isValidPassword(string pass){
+    bool has_uppercase = false;
+    bool has_lowercase = false;
+    bool has_digit = false;
+    
+    // check length
+    if (pass.length() < 8) {
+        return false;
+    }
+    
+    // check for at least one uppercase letter, lowercase letter, and digit
+    for (int i = 0; i < pass.length(); i++) {
+        if (isupper(pass[i])) {
+            has_uppercase = true;
+        }
+        if (islower(pass[i])) {
+            has_lowercase = true;
+        }
+        if (isdigit(pass[i])) {
+            has_digit = true;
+        }
+    }
+    
+    // return true only if all conditions are met
+    return (has_uppercase && has_lowercase && has_digit);
+}
+
 #endif

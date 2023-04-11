@@ -24,4 +24,5 @@ class PasswordManager {
         string getEncryptedPassword();
         bool setNewPassword(string);
         bool authenticate(string);
+        bool isValidPassword(string);
 };

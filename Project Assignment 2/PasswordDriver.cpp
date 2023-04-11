@@ -73,15 +73,14 @@ int main(){
         cout<< "\nNetID is invalid, password not changed."<< endl;
     }
 
-
+/*
     for (int i = 0; i < size; i++){
         index = i;
         
-        /* if (passwordSample[index].setNewPassword(user_oldPass)){
-            cout << "\nNew password does not meet criteria." << endl;
-            break;
+        if (passwordSample[i].isValidPassword(user_newPass) == false){
+            cout << "\nNew password is invalid, password not changed." << endl;
         }
-    */
+
         if(passwordSample[i].getUsername() == user_netID){ // This is working as intended
             // If old password is correct, change password
         if(user_oldPass == passwordSample[index].getEncryptedPassword()){
@@ -93,6 +92,35 @@ int main(){
             }
        }
     }
+*/
+    bool isValid = false;
+    for (int i = 0; i < size && !isValid; i++) {
+        index = i;
+        if (passwordSample[i].isValidPassword(user_newPass)) {
+            isValid = true;
+            break;
+        }
+    }
+    if (!isValid) {
+        cout << "\nNew password does not meet criteria." << endl;
+    }
+    else{
+        for (int i = 0; i < size; i++) {
+            index = i;
+            if (passwordSample[i].getUsername() == user_netID) {
+                if (user_oldPass == passwordSample[index].getEncryptedPassword()) {
+                    passwordSample[i].setEncryptedPassword(user_newPass);
+                    cout << "\nPassword has been changed for netID: " << passwordSample[i].getUsername() << endl;
+                }
+                else {
+                    cout << "\nOld password is incorrect." << endl;
+                }
+                break;
+         }
+        }
+    }
+
+
 
    cout << endl;
    for (int i = 0; i < 4; i++){
