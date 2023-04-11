@@ -26,10 +26,6 @@ int main(){
             fin >> pass;
             passwordSample[i].setEncryptedPassword(pass);
             fin >> ws;
-
-            // Debug/Testing code
-            //cout << passwordSample[i].getUsername() << endl;
-            // cout << passwordSample[i].getEncryptedPassword() << endl;
         }
     }
     fin.close();
@@ -50,48 +46,8 @@ int main(){
     cout << "Please enter your new password: " << endl;
         cin >> user_newPass;
 
-    // Debug/Testing code
-    // cout << "Your netID is: " << user_netID << " Your old password is: "
-       //  << user_oldPass << " Your new password is: " << user_newPass << endl;
-
-
-    // Debug/Testing code 
-/*
-    cout << user_netID << "is the netID" << endl;
-    for (int i = 0; i < 3; i++){
-        cout << "Testing to see if getUserName works: " << passwordSample[i].getUsername() << endl;
-    }
-*/
-    int index; // index of perticular member function in class
+    PasswordManager user1;
     int size = 4;
-    for (int i = 0; i < size; i++){
-        if (user_netID == passwordSample[i].getUsername()){
-            index = i;
-            flag = true;
-        }
-    }
-    if (flag == false){
-        cout << "NetID is invalid, password not changed." << endl;
-        exit(0);
-    }
-    if (!passwordSample[index].authenticate(user_oldPass)){
-        cout << "Old password is incorrect." << endl;
-        exit(0);
-    }
-    if (!passwordSample[index].setNewPassword(user_newPass)){
-        cout << "New Password does not meet criteria." << endl;
-        exit(0);
-    }
-    for (int i = 0; i < 4; i++){
-        cout << passwordSample[i].getUsername() << " " << passwordSample[i].getEncryptedPassword() << endl;
-    }
-
-    cout << "Password has been changed for netID: " << passwordSample[index].getUsername() << endl;
-
-    return 0;
-}
-/*
-    int size = 3;
     int index = -1; // index of perticular member function in class
 
     for(int i=0; i<size; i++){
@@ -110,15 +66,33 @@ int main(){
         cout<< "\nNetID is invalid, password not changed."<< endl;
     }
 
-    for (int i = 0; i < 3; i++){
+
+    for (int i = 0; i < size; i++){
         index = i;
+        
+        if (passwordSample[index].setNewPassword(user_oldPass)){
+            cout << "\nNew password does not meet criteria." << endl;
+            break;
+        }
+
         if(passwordSample[i].getUsername() == user_netID){ // This is working as intended
-            cout << "\n" << passwordSample[i].getEncryptedPassword() << endl;
-            cout << user_oldPass << endl;
-            // cout << "Testing to see where this is going wrong" << endl;
-            // passwordSample[i].setEncryptedPassword(user_oldPass);
+            // If old password is correct, change password
+        if(user_oldPass == passwordSample[index].getEncryptedPassword()){
+                passwordSample[i].setEncryptedPassword(user_newPass);
+                cout << "\nPassword has been changed for netID: " << passwordSample[i].getUsername() << endl;
+            }
+        else{
+                cout << "\nOld password is incorrect." << endl;
+            }
+           // passwordSample[i].setEncryptedPassword(user_newPass);
+            
             // cout << passwordSample[i].getEncryptedPassword() << endl;
-            if(user1.setNewPassword(user_newPass) == false){
+
+
+
+           
+           
+           /* if(user1.setNewPassword(user_newPass)){
                 cout << "\nNew password does not meet criteria." << endl;
             }
             if (user_oldPass == passwordSample[index].getEncryptedPassword()){
@@ -129,22 +103,23 @@ int main(){
             else{
                 cout << "\nOld password is incorrect." << endl;
             }
+            */
        }
     }
 // Old password is incorrect
 // Password has been changed for netId: user_netID
 // New password does not meet criteria
-
-   for (int i = 0; i < 3; i++){
+   cout << endl;
+   for (int i = 0; i < 4; i++){
         cout << passwordSample[i].getUsername() << " " << passwordSample[i].getEncryptedPassword() << endl;
     }
    
     ofstream fout;
     fout.open("passwords.txt");
-    for (int i = 0; i < 3; i++){
+    for (int i = 0; i < 4; i++){
         fout << passwordSample[i].getUsername() << " " << passwordSample[i].getEncryptedPassword() << endl;
     }
     fout.close();
 
     return 0;
-   */ 
+}

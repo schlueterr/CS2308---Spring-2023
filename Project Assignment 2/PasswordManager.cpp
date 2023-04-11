@@ -135,13 +135,15 @@ bool PasswordManager::setNewPassword(string pass){
 // returns: a boolean value (true if password matches, false if not)
 //***********************************************************
 bool PasswordManager::authenticate(string pass){
-    string tempPass = encrypt(pass);
+    /*string tempPass = encrypt(pass);
     if (tempPass == encryptedPassword){
         return true;
     }
     else{
         return false;
     }
+    */
+    return (encrypt(pass) == encryptedPassword);
 }
 
 #endif
