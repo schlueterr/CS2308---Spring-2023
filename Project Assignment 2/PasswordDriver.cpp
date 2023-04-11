@@ -1,3 +1,13 @@
+// File Name: PasswordDriver.cpp
+//
+// Author: Braden Schlueter plr61
+// Date: 04/10/2023
+// Assignment Number: 2
+// CS 2308.258 Spring 2023
+//
+// The driver for the PasswordManager class that includes the main function.
+
+
 #include <iostream>
 #include <string>
 #include <fstream>
