@@ -67,11 +67,11 @@ int main(){
     for (int i = 0; i < size; i++){
         index = i;
         
-        if (passwordSample[index].setNewPassword(user_oldPass)){
+        /* if (passwordSample[index].setNewPassword(user_oldPass)){
             cout << "\nNew password does not meet criteria." << endl;
             break;
         }
-
+    */
         if(passwordSample[i].getUsername() == user_netID){ // This is working as intended
             // If old password is correct, change password
         if(user_oldPass == passwordSample[index].getEncryptedPassword()){
