@@ -5,20 +5,22 @@
 using namespace std;
 
 int main(){
-    PasswordManager passwordSample[3];
+    PasswordManager passwordSample[4];
     string user, pass;
     string fileName;
+    bool flag;
 
     // Working as intended
     ifstream fin;
-    // cout << "Please enter the name of the input file: " << endl;
-    // cin >> fileName;
-    fin.open("passwords.txt");
+    cout << "Please enter the name of the input file: " << endl;
+    cin >> fileName;
+    fin.open(fileName);
     if (!fin){ //Error check
         cout << "ERROR: File failed to open." << endl;
+        exit(0);
     }
     else{ //Read data from the file
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 4; i++){
             fin >> user;
             passwordSample[i].setUsername(user);
             fin >> pass;
@@ -26,8 +28,8 @@ int main(){
             fin >> ws;
 
             // Debug/Testing code
-            // cout << passwordSample[i].getUsername() << endl;
-            //  cout << passwordSample[i].getEncryptedPassword() << endl;
+            //cout << passwordSample[i].getUsername() << endl;
+            // cout << passwordSample[i].getEncryptedPassword() << endl;
         }
     }
     fin.close();
@@ -38,7 +40,6 @@ int main(){
     cout << "3. Must contain at least one lowercase letter" << endl;
     cout << "4. Must contain at least one digit" << endl;
 
-    PasswordManager user1;
     string user_netID, user_newPass, user_oldPass;
     
     // Ask user for netID, new & old password
@@ -61,8 +62,35 @@ int main(){
         cout << "Testing to see if getUserName works: " << passwordSample[i].getUsername() << endl;
     }
 */
+    int index; // index of perticular member function in class
+    int size = 4;
+    for (int i = 0; i < size; i++){
+        if (user_netID == passwordSample[i].getUsername()){
+            index = i;
+            flag = true;
+        }
+    }
+    if (flag == false){
+        cout << "NetID is invalid, password not changed." << endl;
+        exit(0);
+    }
+    if (!passwordSample[index].authenticate(user_oldPass)){
+        cout << "Old password is incorrect." << endl;
+        exit(0);
+    }
+    if (!passwordSample[index].setNewPassword(user_newPass)){
+        cout << "New Password does not meet criteria." << endl;
+        exit(0);
+    }
+    for (int i = 0; i < 4; i++){
+        cout << passwordSample[i].getUsername() << " " << passwordSample[i].getEncryptedPassword() << endl;
+    }
 
+    cout << "Password has been changed for netID: " << passwordSample[index].getUsername() << endl;
 
+    return 0;
+}
+/*
     int size = 3;
     int index = -1; // index of perticular member function in class
 
@@ -119,5 +147,4 @@ int main(){
     fout.close();
 
     return 0;
-    
-}
+   */ 
