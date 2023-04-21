@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+// Use question 2 from StackInClassPractice.pdf as a pick up point
 class DynIntStack{
     private:
         struct Node{
