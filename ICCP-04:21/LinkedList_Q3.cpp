@@ -2,26 +2,32 @@
 
 using namespace std;
 
-class LinkedList{
+class LinkedList {
 public:
     struct Node {
         int data;
         Node* next;
+
+        Node(int d, Node* n) {
+            data = d;
+            next = n;
+        }
     };
-    Node *head;
+
+    Node* head;
 
     LinkedList() {
         head = nullptr;
     }
 
     void createList() {
-        head = new Node{1, nullptr};
+        head = new Node(1, nullptr);
         head->next = nullptr;
 
         // create the rest of the nodes and link them together
         Node* current = head;
         for(int i = 2; i <= 5; i++) {
-            current->next = new Node{i, nullptr};
+            current->next = new Node(i, nullptr);
             current = current->next;
         }
 
@@ -40,7 +46,7 @@ public:
     }
 };
 
-int main(){
+int main() {
     LinkedList list;
     list.createList();
     list.printList();
