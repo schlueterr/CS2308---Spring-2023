@@ -18,6 +18,7 @@ Node* reverseLinkedList(Node* head){
 
     Node* newHead = nullptr;
     Node* temp = nullptr;
+    
     while (!stack1.isEmpty()){
         int data = stack1.pop();
         Node* newNode = new Node(data);
