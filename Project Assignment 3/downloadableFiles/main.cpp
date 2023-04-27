@@ -1,7 +1,7 @@
 // File Name: GameState.h
 //
-// Author: Jill Seaman
-// Date: 4/9/2022
+// Author: Braden Schlueter plr61
+// Date: 05/01/2023
 // Assignment Number: 3
 // CS 2308 Spring 2023
 // Instructor: Xiaomin Li

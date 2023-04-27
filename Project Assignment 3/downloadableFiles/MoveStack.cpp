@@ -1,7 +1,7 @@
 // Filename MoveStack.cpp
-// Author: 
-// Date: 
-// Assignment Number: 
+// Author: Braden Schlueter plr61
+// Date: 05/01/2023
+// Assignment Number: 3
 // CS 2308 Sprin 2023
 // Instructor: Xiaomin Li
 //

@@ -1,7 +1,7 @@
 // File Name: GameState.cpp
 //
-// Author: 
-// Date: 
+// Author: Braden Schlueter plr61
+// Date: 05/01/2023
 // Assignment Number: 
 // CS 2308 Sprin 2023
 // Instructor: Xiaomin Li
