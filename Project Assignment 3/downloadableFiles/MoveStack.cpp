@@ -17,12 +17,17 @@ using namespace std;
 
 
 MoveStack::MoveStack() { 
-
+    head = nullptr;
 }
 
 
 MoveStack::~MoveStack() {
-
+    Move *current = head;
+    while (current != nullptr){
+        Move *temp = current->next;
+        delete current;
+        current = temp; 
+    }
 }
 
 //****************************************************
@@ -30,7 +35,13 @@ MoveStack::~MoveStack() {
 // number of elements on the stack.                  *
 //****************************************************
 int MoveStack::getSize() {
-
+    Move *temp = head;
+    int count = 0;
+    while (temp != nullptr){
+        count++;
+        temp = temp->next;
+    }
+    return count;
  }
 
 //****************************************************
@@ -38,7 +49,8 @@ int MoveStack::getSize() {
 // of the stack (does not remove it).                *
 //****************************************************
 Move MoveStack::top() {
-
+    assert(head != nullptr);
+    return *head;
 }
 //*************************************************
 // Member function push pushes the argument onto  *
@@ -46,12 +58,25 @@ Move MoveStack::top() {
 // move: the Move item to be pushed               *
 //*************************************************
 void MoveStack::push(Move move) {
-
-};
+    Move *temp = new Move;
+    temp->x = move.x;
+    temp->y = move.y;
+    temp->next = nullptr;
+    if (head == nullptr){
+        head = temp;
+    }
+    else{
+        temp->next = head;
+        head = temp;
+    }
+}
 //****************************************************
 // Member function pop removes the value at the top  *
 // of the stack, but returns nothing.                *
 //****************************************************
 void MoveStack::pop() {
-
+    Move *temp;
+    temp = head;
+    head = head->next;
+    delete temp;
 }

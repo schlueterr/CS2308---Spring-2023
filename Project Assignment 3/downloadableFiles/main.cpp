@@ -16,6 +16,7 @@ using namespace std;
 
 int main() {
     GameState game;  // manages the board and undo stack
+    Move move;  // stores a move
     
     string command;  // input from user
     int x;  // x coordinate of move
