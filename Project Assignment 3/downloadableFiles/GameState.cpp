@@ -50,7 +50,17 @@ bool GameState::checkLastPlayerWin() {
 // constructor: initializes game board to all '_' underscores.
 //***********************************************************
 GameState::GameState() {
-
+    /* 
+    boardState = new char*[3];
+    for (int i = 0; i < 3; i++){
+        boardState[i] = new char[3];
+    }
+    */
+    for (int i = 0; i < 3; ++i){
+        for (int j = 0; j < 3; j++){
+            boardState[i][j] = '_';
+        }
+    }
 }
 
 //***********************************************************
@@ -58,7 +68,11 @@ GameState::GameState() {
 // returns 0 for player 0 and 1 for player 1
 //***********************************************************
 int GameState::getCurrentPlayer() {
-
+    int size = moveStack.getSize();
+    if(size%2 == 0)
+        return 0;
+    else
+        return 1;
 }
 
 //***********************************************************
@@ -69,7 +83,22 @@ int GameState::getCurrentPlayer() {
 // returns 1 if the move was successful and there are moves available,
 //***********************************************************
 int GameState::addMove(Move move) {
-
+    char player = 'x';
+    if (getCurrentPlayer() == 1)
+        player = 'o';
+    int x = move.x;
+    int y = move.y;
+    if (boardState[x][y] == '_'){
+        boardState[x][y] = player;
+        moveStack.push(move);
+        if (moveStack.getSize() == 9)
+            return 0;
+        else
+            return 1;
+    }
+    else{
+        return -1;
+    }
 }
 
 //***********************************************************
@@ -79,14 +108,27 @@ int GameState::addMove(Move move) {
 //   no moves to undo.
 //***********************************************************
 bool GameState::undoLast() {
-
+    if (moveStack.getSize() == 0)
+        return false;
+    Move temp = moveStack.top();
+    Move *tempPtr = &temp;
+    int x = tempPtr->x;
+    int y = tempPtr->y;
+    boardState[x][y] = '_';
+    moveStack.pop();
+    return true;
 }
 
 //***********************************************************
 // displayBoardState: Prints the board state to the "out" stream.
 //***********************************************************
 void GameState::displayBoardState(std::ostream& out) {
-
-}
+    for (int i = 0; i < 3; ++i){
+        for (int j = 0; j < 3; j++){
+            out << boardState[i][j];
+        }
+        out << endl;
+    }
+}   
 
 

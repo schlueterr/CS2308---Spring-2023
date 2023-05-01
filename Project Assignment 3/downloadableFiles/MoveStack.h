@@ -8,6 +8,7 @@ struct Move{
     int y;
     Move(){ x=0; y=0; }
     Move(int a, int b) { x=a, y=b;}
+    
     // This is needed for the next pointer?
     Move *next;
 };
